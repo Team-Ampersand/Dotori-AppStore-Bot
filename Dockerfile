@@ -1,5 +1,5 @@
 # Use an official Swift runtime as the base image
-FROM swift:latest
+FROM swift:5.8-focal as build
 
 # Set the working directory in the container
 WORKDIR /app
