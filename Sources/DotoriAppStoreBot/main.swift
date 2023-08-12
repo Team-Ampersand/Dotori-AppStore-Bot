@@ -65,6 +65,6 @@ reason : \(error.localizedDescription)
     }
 }
 
-bot.login(token: "MTEzOTU0NDMwNjYwMDkwNjg0Mg.GU-62G.rBJjXRJDE-mS0PiHbJt9uV6_iVXeZUifDEeVDQ")
+bot.login()
 
 RunLoop.main.run()
