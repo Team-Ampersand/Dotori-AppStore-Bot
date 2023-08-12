@@ -19,4 +19,4 @@ COPY . /app
 RUN swift build
 
 # Specify the default command to run when the container starts
-CMD ["swift", "run"]
+ENTRYPOINT ["swift", "run"]
