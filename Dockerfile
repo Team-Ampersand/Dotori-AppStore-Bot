@@ -8,6 +8,10 @@ ARG GITHUB_TOKEN
 ARG GUILD_ID
 ARG DISCORD_TOKEN
 
+ENV GITHUB_TOKEN=${GITHUB_TOKEN}
+ENV GUILD_ID=${GUILD_ID}
+ENV DISCORD_TOKEN=${DISCORD_TOKEN}
+
 # Copy the entire contents of the Swift package to the container
 COPY . /app
 
@@ -15,4 +19,4 @@ COPY . /app
 RUN swift build
 
 # Specify the default command to run when the container starts
-CMD [ "GITHUB_TOKEN=${GITHUB_TOKEN}", "GUILD_ID=${GUILD_ID}", "DISCORD_TOKEN=${DISCORD_TOKEN}", "swift", "run"]
+CMD ["swift", "run"]
