@@ -1,5 +1,8 @@
 import DiscordKitBot
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 let bot = Client(intents: .unprivileged)
 

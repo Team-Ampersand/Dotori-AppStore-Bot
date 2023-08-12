@@ -16,7 +16,7 @@ RUN swift build
 
 # Specify the default command to run when the container starts
 CMD [ \
-  "GITHUB_TOKEN=${GITHUB_TOKEN}}", \
+  "GITHUB_TOKEN=${GITHUB_TOKEN}", \
   "GUILD_ID=${GUILD_ID}", \
   "DISCORD_TOKEN=${DISCORD_TOKEN}", \
   "swift", \
