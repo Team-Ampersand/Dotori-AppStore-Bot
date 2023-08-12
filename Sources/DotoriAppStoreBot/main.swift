@@ -27,12 +27,6 @@ func distribution(interaction: CommandData) async {
         guard let version: String = interaction.optionValue(of: "버전"),
               let change: String = interaction.optionValue(of: "변경사항")
         else { return }
-        try await interaction.reply("""
-- Version : \(version)
-- 변경사항 : \(change)
-
-🚀 앱스토어에 앱을 제출을 시작합니다.. 완료하면 알려드릴게요!
-""")
         let submission = SubmissionRequestDTO(version: version, changed: change)
 
         guard let url = URL(string: "https://api.github.com/repos/Team-Ampersand/Dotori-iOS/actions/workflows/65967674/dispatches")
@@ -43,7 +37,25 @@ func distribution(interaction: CommandData) async {
         request.httpMethod = "POST"
         request.httpBody = try JSONEncoder().encode(submission)
         request.addValue("token \(githubToken)", forHTTPHeaderField: "Authorization")
-        let _ = try await URLSession.shared.data(for: request)
+        request.addValue("application/vnd.github+json", forHTTPHeaderField: "Accept")
+        let (data, response) = try await URLSession.shared.data(for: request)
+        guard let httpResponse = response as? HTTPURLResponse,
+              200...300 ~= httpResponse.statusCode
+        else {
+            try await interaction.reply("""
+👾 Github Action Workflows 실행을 실패했습니다..
+
+response: \(String(data: data, encoding: .utf8) ?? "")
+""")
+            return
+        }
+
+        try await interaction.reply("""
+- Version : \(version)
+- 변경사항 : \(change)
+
+🚀 앱스토어에 앱 제출을 시작합니다.. 완료하면 알려드릴게요!
+""")
     } catch {
         try? await interaction.reply("""
 😵 앱스토어 배포가 실패했습니다..
@@ -53,6 +65,6 @@ reason : \(error.localizedDescription)
     }
 }
 
-bot.login()
+bot.login(token: "MTEzOTU0NDMwNjYwMDkwNjg0Mg.GU-62G.rBJjXRJDE-mS0PiHbJt9uV6_iVXeZUifDEeVDQ")
 
 RunLoop.main.run()
