@@ -9,18 +9,18 @@ ENV GITHUB_TOKEN=${GITHUB_TOKEN}
 ENV GUILD_ID=${GUILD_ID}
 ENV DISCORD_TOKEN=${DISCORD_TOKEN}
 
-# # set up the workspace
-# RUN mkdir /workspace
-# WORKDIR /workspace
-#
-# # copy the source to the docker image
-# COPY . /workspace
-#
+# set up the workspace
+RUN mkdir /workspace
+WORKDIR /workspace
+
+# copy the source to the docker image
+COPY . /workspace
+
 # RUN swift build -c release --static-swift-stdlib
-#
-# #------- package -------
+
+#------- package -------
 # FROM centos
-# # copy executables
+# copy executables
 # COPY --from=builder /workspace/.build/release/DotoriAppStoreBot /
 
 # set the entry point (DotoriAppStoreBot)
