@@ -26,6 +26,7 @@ RUN GITHUB_TOKEN=${GITHUB_TOKEN} GUILD_ID=${GUILD_ID} DISCORD_TOKEN=${DISCORD_TO
 #------- package -------
 FROM centos
 
+RUN pwd
 COPY --from=builder /workspace/.build/release/DotoriAppStoreBot /
 
 # set the entry point (DotoriAppStoreBot)
