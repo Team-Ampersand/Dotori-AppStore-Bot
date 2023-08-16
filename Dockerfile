@@ -27,7 +27,8 @@ RUN GITHUB_TOKEN=${GITHUB_TOKEN} GUILD_ID=${GUILD_ID} DISCORD_TOKEN=${DISCORD_TO
 #------- package -------
 FROM centos
 # copy executables
-# COPY --from=builder /workspace/.build/release/DotoriAppStoreBot /
+RUN ls -al /
+COPY --from=builder /workspace/.build/release/DotoriAppStoreBot /
 
 # set the entry point (DotoriAppStoreBot)
 CMD ["DotoriAppStoreBot"]
