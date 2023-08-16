@@ -21,7 +21,7 @@ RUN swift build -c release --static-swift-stdlib
 #------- package -------
 FROM centos
 # copy executables
-# COPY --from=builder /workspace/.build/release/DotoriAppStoreBot /
+COPY --from=builder /workspace/.build/release/DotoriAppStoreBot /
 
 # set the entry point (DotoriAppStoreBot)
 CMD ["DotoriAppStoreBot"]
