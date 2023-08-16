@@ -13,6 +13,8 @@ ENV DISCORD_TOKEN=${DISCORD_TOKEN}
 RUN mkdir /workspace
 WORKDIR /workspace
 
+COPY . /workspace
+
 ARG GID=1000
 ARG UID=1000
 
@@ -20,20 +22,12 @@ ARG UID=1000
 RUN groupadd -g "${GID}" worker \
   && useradd --create-home --no-log-init -u "${UID}" -g "${GID}" worker
 USER worker:worker
-COPY . /workspace
 
 RUN GITHUB_TOKEN=${GITHUB_TOKEN} GUILD_ID=${GUILD_ID} DISCORD_TOKEN=${DISCORD_TOKEN} swift build -c release --static-swift-stdlib
 
 #------- package -------
 # copy executables
 FROM centos
-
-ARG GID=1000
-ARG UID=1000
-
-RUN groupadd -g "${GID}" worker \
-  && useradd --create-home --no-log-init -u "${UID}" -g "${GID}" worker
-USER worker:worker
 
 COPY --from=builder /workspace/.build/release/DotoriAppStoreBot /
 
