@@ -1,12 +1,5 @@
 # Use an official Swift runtime as the base image
 FROM swift:5.8-focal as build
-
-ARG UID=1000
-ARG GID=1000
-
-RUN addgroup --system --gid 1000 worker
-RUN adduser --system --uid 1000 --ingroup worker --disabled-password worker
-USER worker:worker
   
 ARG GITHUB_TOKEN
 ARG GUILD_ID
