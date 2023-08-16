@@ -13,8 +13,8 @@ ENV DISCORD_TOKEN=${DISCORD_TOKEN}
 RUN mkdir /workspace
 WORKDIR /workspace
 
-GID = 1000
-UID = 1000
+ARG GID = 1000
+ARG UID = 1000
 
 # copy the source to the docker image
 RUN groupadd -g "${GID}" worker \
