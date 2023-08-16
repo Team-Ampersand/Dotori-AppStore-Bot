@@ -29,7 +29,7 @@ RUN GITHUB_TOKEN=${GITHUB_TOKEN} GUILD_ID=${GUILD_ID} DISCORD_TOKEN=${DISCORD_TO
 # copy executables
 FROM centos
 
-COPY --chown=worker:worker /workspace/.build/release/DotoriAppStoreBot /
+COPY --from=builder /workspace/.build/release/DotoriAppStoreBot /
 
 # set the entry point (DotoriAppStoreBot)
 CMD ["DotoriAppStoreBot"]
