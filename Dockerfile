@@ -16,8 +16,6 @@ ENV GITHUB_TOKEN=${GITHUB_TOKEN}
 ENV GUILD_ID=${GUILD_ID}
 ENV DISCORD_TOKEN=${DISCORD_TOKEN}
 
-RUN PWD
-
 # set up the workspace
 RUN mkdir /workspace
 WORKDIR /workspace
@@ -26,11 +24,10 @@ WORKDIR /workspace
 COPY . /workspace
 
 RUN GITHUB_TOKEN=${GITHUB_TOKEN} GUILD_ID=${GUILD_ID} DISCORD_TOKEN=${DISCORD_TOKEN} swift build -c release --static-swift-stdlib
+RUN PWD
 
 #------- package -------
-FROM centos
 # copy executables
-RUN ls -al /home
 COPY --from=builder /workspace/.build/release/DotoriAppStoreBot /
 
 # set the entry point (DotoriAppStoreBot)
