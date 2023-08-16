@@ -21,6 +21,11 @@ RUN PWD
 
 #------- package -------
 # copy executables
+
+RUN addgroup --system --gid 1000 worker
+RUN adduser --system --uid 1000 --ingroup worker --disabled-password worker
+USER worker:worker
+
 COPY --from=builder /workspace/.build/release/DotoriAppStoreBot /
 
 # set the entry point (DotoriAppStoreBot)
