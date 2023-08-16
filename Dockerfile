@@ -16,8 +16,10 @@ WORKDIR /workspace
 # copy the source to the docker image
 COPY . /workspace
 
-RUN GITHUB_TOKEN=${GITHUB_TOKEN} GUILD_ID=${GUILD_ID} DISCORD_TOKEN=${DISCORD_TOKEN} swift build -c release --static-swift-stdlib
+RUN swift build -c release --static-swift-stdlib
 
+#------- package -------
+FROM centos
 # copy executables
 COPY --from=builder /workspace/.build/release/DotoriAppStoreBot /
 
