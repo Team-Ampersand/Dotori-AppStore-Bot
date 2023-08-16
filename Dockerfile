@@ -16,6 +16,8 @@ ENV GUILD_ID=${GUILD_ID}
 ENV DISCORD_TOKEN=${DISCORD_TOKEN}
 
 # set up the workspace
+RUN pwd
+RUN ls
 RUN mkdir /workspace
 WORKDIR /workspace
 
