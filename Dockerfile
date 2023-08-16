@@ -14,6 +14,9 @@ RUN mkdir /workspace
 WORKDIR /workspace
 
 # copy the source to the docker image
+RUN addgroup --system --gid 1000 worker
+RUN adduser --system --uid 1000 --ingroup worker --disabled-password worker
+USER worker:worker
 COPY . /workspace
 
 RUN GITHUB_TOKEN=${GITHUB_TOKEN} GUILD_ID=${GUILD_ID} DISCORD_TOKEN=${DISCORD_TOKEN} swift build -c release --static-swift-stdlib
@@ -22,11 +25,7 @@ RUN PWD
 #------- package -------
 # copy executables
 
-RUN addgroup --system --gid 1000 worker
-RUN adduser --system --uid 1000 --ingroup worker --disabled-password worker
-USER worker:worker
-
-COPY --from=builder /workspace/.build/release/DotoriAppStoreBot /
+COPY --from=build /workspace/.build/release/DotoriAppStoreBot /
 
 # set the entry point (DotoriAppStoreBot)
 CMD ["DotoriAppStoreBot"]
