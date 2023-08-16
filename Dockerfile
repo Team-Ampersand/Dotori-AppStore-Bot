@@ -19,7 +19,7 @@ COPY . /workspace
 RUN swift build -c release --static-swift-stdlib
 
 #------- package -------
-# FROM centos
+FROM centos
 # copy executables
 # COPY --from=builder /workspace/.build/release/DotoriAppStoreBot /
 
