@@ -19,6 +19,9 @@ RUN adduser --system --uid 1000 --ingroup worker --disabled-password worker
 USER worker:worker
 COPY . /workspace
 
+ARG UID=1000
+ARG GID=1000
+
 RUN addgroup --system --gid 1000 worker
 RUN adduser --system --uid 1000 --ingroup worker --disabled-password worker
 USER worker:worker
