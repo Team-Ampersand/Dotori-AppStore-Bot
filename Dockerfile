@@ -1,5 +1,5 @@
 # Use an official Swift runtime as the base image
-FROM swift:5.8-focal as build
+FROM swift:5.8-focal as builder
   
 ARG GITHUB_TOKEN
 ARG GUILD_ID
@@ -25,7 +25,7 @@ RUN PWD
 #------- package -------
 # copy executables
 
-COPY --from=build /workspace/.build/release/DotoriAppStoreBot /
+COPY --from=builder /workspace/.build/release/DotoriAppStoreBot /
 
 # set the entry point (DotoriAppStoreBot)
 CMD ["DotoriAppStoreBot"]
