@@ -6,6 +6,7 @@ import FoundationNetworking
 
 let bot = Client(intents: .unprivileged)
 
+let discordToken = ProcessInfo.processInfo.environment["DISCORD_TOKEN"] ?? ""
 let githubToken = ProcessInfo.processInfo.environment["GITHUB_TOKEN"] ?? ""
 let guildID = ProcessInfo.processInfo.environment["GUILD_ID"] ?? ""
 
@@ -68,6 +69,6 @@ reason : \(error.localizedDescription)
     }
 }
 
-bot.login()
+bot.login(token: discordToken)
 
 RunLoop.main.run()
