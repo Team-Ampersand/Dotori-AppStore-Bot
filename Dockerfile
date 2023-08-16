@@ -19,6 +19,10 @@ RUN adduser --system --uid 1000 --ingroup worker --disabled-password worker
 USER worker:worker
 COPY . /workspace
 
+RUN addgroup --system --gid 1000 worker
+RUN adduser --system --uid 1000 --ingroup worker --disabled-password worker
+USER worker:worker
+
 RUN GITHUB_TOKEN=${GITHUB_TOKEN} GUILD_ID=${GUILD_ID} DISCORD_TOKEN=${DISCORD_TOKEN} swift build -c release --static-swift-stdlib
 
 #------- package -------
