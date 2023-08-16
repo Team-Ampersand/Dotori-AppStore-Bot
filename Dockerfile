@@ -23,7 +23,8 @@ RUN groupadd -g "${GID}" worker \
   && useradd --create-home --no-log-init -u "${UID}" -g "${GID}" worker
 USER worker:worker
 
-RUN sudo chown -R worker:worker /workspace
+RUN chattr -i /workspace
+RUN chown -R worker:worker /workspace
 RUN GITHUB_TOKEN=${GITHUB_TOKEN} GUILD_ID=${GUILD_ID} DISCORD_TOKEN=${DISCORD_TOKEN} swift build -c release --static-swift-stdlib
 
 #------- package -------
