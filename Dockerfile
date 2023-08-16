@@ -14,17 +14,10 @@ RUN mkdir /workspace
 WORKDIR /workspace
 
 # copy the source to the docker image
-RUN addgroup --system --gid 1000 worker
-RUN adduser --system --uid 1000 --ingroup worker --disabled-password worker
+RUN groupadd -g "${GID}" worker \
+  && useradd --create-home --no-log-init -u "${UID}" -g "${GID}" worker
 USER worker:worker
 COPY . /workspace
-
-ARG UID=1000
-ARG GID=1000
-
-RUN addgroup --system --gid 1000 worker
-RUN adduser --system --uid 1000 --ingroup worker --disabled-password worker
-USER worker:worker
 
 RUN GITHUB_TOKEN=${GITHUB_TOKEN} GUILD_ID=${GUILD_ID} DISCORD_TOKEN=${DISCORD_TOKEN} swift build -c release --static-swift-stdlib
 
