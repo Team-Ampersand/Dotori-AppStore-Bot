@@ -29,4 +29,4 @@ FROM centos
 COPY --from=builder /workspace/.build/release/DotoriAppStoreBot /
 
 # set the entry point (DotoriAppStoreBot)
-CMD ["readelf", "-V", "/DotoriAppStoreBot"]
+CMD ["/DotoriAppStoreBot"]
