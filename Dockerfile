@@ -25,7 +25,5 @@ FROM centos
 
 COPY --from=builder /workspace/.build/release/DotoriAppStoreBot /
 
-RUN apt-get install libcurl4-openssl-dev
-RUN yum install gcc
 # set the entry point (DotoriAppStoreBot)
 CMD ["/DotoriAppStoreBot"]
