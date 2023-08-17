@@ -1,5 +1,5 @@
 # Use an official Swift runtime as the base image
-FROM swift:5.8-focal as builder
+FROM swift:5.6-focal as builder
   
 ARG GITHUB_TOKEN
 ARG GUILD_ID
