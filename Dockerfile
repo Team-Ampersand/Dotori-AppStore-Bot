@@ -26,4 +26,4 @@ FROM centos
 COPY --from=builder /workspace/.build/release/DotoriAppStoreBot /
 
 # set the entry point (DotoriAppStoreBot)
-CMD ["apt-get install libcurl4-openssl-dev", "&", "/DotoriAppStoreBot"]
+CMD ["/DotoriAppStoreBot"]
