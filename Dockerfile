@@ -15,9 +15,6 @@ WORKDIR /workspace
 
 COPY . /workspace
 
-ARG GID=1000
-ARG UID=1000
-
 USER root:root
 
 # RUN chown -R worker:worker /workspace
