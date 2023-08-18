@@ -166,6 +166,9 @@ public class DecompressionEngine {
             Self.log.debug("Appending to buf", metadata: ["buf.count": "\(buf.count)"])
             return nil
         }
+        Self.log.trace("Decompressed data", metadata: [
+            "buf.count": "\(buf.count)"
+        ])
 
         guard let output = try? ZlibArchive.unarchive(archive: buf) else { return nil }
         buf.removeAll()
