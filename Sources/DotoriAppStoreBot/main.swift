@@ -6,7 +6,6 @@ import FoundationNetworking
 
 let bot = Client(intents: .unprivileged)
 
-print(ProcessInfo.processInfo.environment["DISCORD_TOKEN"] ?? "")
 let githubToken = ProcessInfo.processInfo.environment["GITHUB_TOKEN"] ?? ""
 let guildID = ProcessInfo.processInfo.environment["GUILD_ID"] ?? ""
 
