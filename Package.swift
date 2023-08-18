@@ -15,7 +15,7 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/SwiftcordApp/DiscordKit", branch: "main")
+        .package(path: "./Packages/DiscordKit")
     ],
     targets: [
         .executableTarget(
