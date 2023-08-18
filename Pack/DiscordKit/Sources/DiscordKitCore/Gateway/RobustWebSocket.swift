@@ -215,6 +215,7 @@ public class RobustWebSocket: NSObject {
         }
 
         socket.onError = {error, _ in
+            Self.log.error("hoxy?")
             Self.log.error("Receive error", metadata: ["error": "\(error.localizedDescription)"])
             self.forceClose()
         }
