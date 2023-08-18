@@ -215,7 +215,6 @@ public class RobustWebSocket: NSObject {
         }
 
         socket.onError = {error, _ in
-            Self.log.error("hoxy?")
             Self.log.error("Receive error", metadata: ["error": "\(error.localizedDescription)"])
             self.forceClose()
         }
@@ -317,6 +316,7 @@ public class RobustWebSocket: NSObject {
         dump(decoded)
 
         if let sequence = decoded.seq { seq = sequence }
+        Self.log.debug("\(seq)")
 
         switch decoded.data {
         case .heartbeat:
