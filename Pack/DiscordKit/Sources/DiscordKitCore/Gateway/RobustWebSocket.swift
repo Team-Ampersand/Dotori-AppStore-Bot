@@ -199,6 +199,7 @@ public class RobustWebSocket: NSObject {
     private func attachSockReceiveListener() {
         #if canImport(WebSocket)
         socket.onData = { message, _ in
+            Self.log.debug("\(message)")
             do {
                 switch message {
                 case .binary(let data):
