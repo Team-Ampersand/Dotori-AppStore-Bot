@@ -312,7 +312,7 @@ public class RobustWebSocket: NSObject {
     private func handleMessage(with message: String) throws {
         guard let msgData = message.data(using: .utf8) else { return }
 		let decoded = try DiscordREST.decoder.decode(GatewayIncoming.self, from: msgData)
-        print(decoded)
+        dump(decoded)
 
         if let sequence = decoded.seq { seq = sequence }
 
