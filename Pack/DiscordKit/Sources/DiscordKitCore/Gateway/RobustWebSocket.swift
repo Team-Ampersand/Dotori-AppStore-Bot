@@ -670,14 +670,12 @@ public extension RobustWebSocket {
         data: T,
         completionHandler: ((Error?) -> Void)? = nil
     ) {
-        print(connected)
         guard connected else { return }
 
         let sendPayload = GatewayOutgoing(opcode: opcode, data: data, seq: seq)
         guard let encoded = try? DiscordREST.encoder.encode(sendPayload)
         else { return }
 
-        print(sendPayload)
         Self.log.trace("Outgoing Payload", metadata: [
             "opcode": "\(opcode)",
             "data": "\((T.self == GatewayIdentify.self ? nil : data))", // Don't log tokens.
