@@ -8,6 +8,17 @@ let bot = Client(intents: .unprivileged)
 
 let githubToken = ProcessInfo.processInfo.environment["GITHUB_TOKEN"] ?? ""
 let guildID = ProcessInfo.processInfo.environment["GUILD_ID"] ?? ""
+guard let url = URL(string: "https://api.github.com/repos/Team-Ampersand/Dotori-iOS/actions/workflows/65967674/dispatches")
+else {
+    exit(1)
+}
+var request = URLRequest(url: url)
+request.httpMethod = "POST"
+request.httpBody = try JSONEncoder().encode(SubmissionRequestDTO(version: "1.1.1", changed: "asd"))
+request.addValue("token \(githubToken)", forHTTPHeaderField: "Authorization")
+request.addValue("application/vnd.github+json", forHTTPHeaderField: "Accept")
+let (data, response) = try await URLSession.shared.data(for: request)
+print(String(data: data, encoding: .utf8))
 
 bot.ready.listen {
     try? await bot.registerApplicationCommands(guild: guildID) {
