@@ -15,7 +15,7 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(path: "./Packages/DiscordKit")
+        .package(path: "./Package/DiscordKit")
     ],
     targets: [
         .executableTarget(
